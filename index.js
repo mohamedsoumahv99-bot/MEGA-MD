@@ -38,11 +38,11 @@ const DATA_DEFAULTS = {
 };
 
 function ensureRuntimeDirectories() {
-    for (const directory of ['data', 'temp', config.sessionsDir]) {
+    for (const directory of [config.dataDir, config.tempDir, config.sessionsDir]) {
         fs.mkdirSync(path.resolve(directory), { recursive: true });
     }
     for (const [file, value] of Object.entries(DATA_DEFAULTS)) {
-        const filePath = path.resolve('data', file);
+        const filePath = path.join(path.resolve(config.dataDir), file);
         if (!fs.existsSync(filePath)) {
             fs.writeFileSync(filePath, JSON.stringify(value, null, 2));
         }
@@ -50,7 +50,7 @@ function ensureRuntimeDirectories() {
 }
 
 function configureTempDirectory() {
-    const temp = path.resolve('temp');
+    const temp = path.resolve(config.tempDir);
     process.env.TMPDIR = temp;
     process.env.TEMP = temp;
     process.env.TMP = temp;
@@ -105,6 +105,19 @@ async function main() {
         });
     }
 }
+
+let shuttingDown = false;
+async function shutdown(signal) {
+    if (shuttingDown) return;
+    shuttingDown = true;
+    printLog('info', `${signal} received; saving WhatsApp sessions before exit.`);
+    await sessionManager.shutdown();
+    await new Promise((resolve) => server.close(resolve));
+    process.exit(0);
+}
+
+process.on('SIGTERM', () => void shutdown('SIGTERM'));
+process.on('SIGINT', () => void shutdown('SIGINT'));
 
 setInterval(() => {
     if (global.gc) global.gc();

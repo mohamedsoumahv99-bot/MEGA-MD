@@ -1,17 +1,24 @@
 services:
   - type: web
-    name: slow-xv
+    name: mega-md
     runtime: docker
+    plan: starter
     dockerfilePath: Dockerfile
+    healthCheckPath: /health
+    autoDeploy: true
     envVars:
       - key: PORT
-        value: "5000"
+        value: "10000"
       - key: OWNER_NUMBER
         value: "224669288332"
       - key: DEVELOPER_NAME
         value: "VArnox Tech"
       - key: SESSIONS_DIR
-        value: "sessions"
+        value: "/data/sessions"
+      - key: DATA_DIR
+        value: "/data/data"
+      - key: TEMP_DIR
+        value: "/tmp/mega-md"
       - key: NEWSLETTER_JID
         value: "120363424782348922@newsletter"
       - key: CHANNEL_INVITE_CODE
@@ -31,3 +38,7 @@ services:
       - key: DB_URL
         value: ""
     startCommand: npm run start:optimized
+    disk:
+      name: mega-md-data
+      mountPath: /data
+      sizeGB: 1

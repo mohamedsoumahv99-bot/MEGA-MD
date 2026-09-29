@@ -16,7 +16,7 @@ describe('paths', () => {
     });
 
     it('SESSION_DIR is under cwd', () => {
-        expect(SESSION_DIR).toBe(path.join(process.cwd(), 'session'));
+        expect(SESSION_DIR).toBe(path.join(process.cwd(), 'sessions'));
     });
 
     it('dataFile joins filename to DATA_DIR', () => {

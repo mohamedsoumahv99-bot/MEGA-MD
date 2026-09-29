@@ -1,12 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import store from '../lib/lightweight_store.js';
+import { DATA_DIR } from '../lib/paths.js';
 const MONGO_URL = process.env.MONGO_URL;
 const POSTGRES_URL = process.env.POSTGRES_URL;
 const MYSQL_URL = process.env.MYSQL_URL;
 const SQLITE_URL = process.env.DB_URL;
 const HAS_DB = !!(MONGO_URL || POSTGRES_URL || MYSQL_URL || SQLITE_URL);
-const databaseDir = path.join(process.cwd(), 'data');
+const databaseDir = DATA_DIR;
 const warningsPath = path.join(databaseDir, 'warnings.json');
 function initializeWarningsFile() {
     if (!HAS_DB) {

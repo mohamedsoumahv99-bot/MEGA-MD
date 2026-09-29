@@ -2,10 +2,10 @@ services:
   - type: web
     name: mega-md
     runtime: docker
-    plan: starter
+    plan: 0.5c-512mb
     dockerfilePath: Dockerfile
     healthCheckPath: /health
-    autoDeploy: true
+    autoDeployTrigger: commit
     envVars:
       - key: PORT
         value: "10000"
@@ -37,7 +37,7 @@ services:
         value: ""
       - key: DB_URL
         value: ""
-    startCommand: npm run start:optimized
+    dockerCommand: npm run start:optimized
     disk:
       name: mega-md-data
       mountPath: /data

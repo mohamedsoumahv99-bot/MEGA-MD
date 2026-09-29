@@ -36,7 +36,7 @@ async function saveState(state) {
         await store.saveSetting('global', 'mention', state);
     }
     else {
-        const dataDir = path.join(process.cwd(), 'data');
+        const dataDir = path.dirname(mentionFilePath);
         if (!fs.existsSync(dataDir)) {
             fs.mkdirSync(dataDir, { recursive: true });
         }

@@ -157,7 +157,7 @@ export default {
     async handler(sock, message, args, context) {
         const { chatId, channelInfo } = context;
         const prefix = config.prefixes[0];
-        const imagePath = path.join(process.cwd(), 'assets/thumb.png');
+        const imagePath = path.join(process.cwd(), 'assets/menu-catbox.jpg');
         if (args.length) {
             const searchTerm = args[0].toLowerCase();
             let cmd = commandHandler.commands.get(searchTerm);

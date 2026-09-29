@@ -4,6 +4,7 @@ import { dataFile } from '../lib/paths.js';
 import { downloadContentFromMessage } from '@whiskeysockets/baileys';
 import { writeFile } from 'fs/promises';
 import store from '../lib/lightweight_store.js';
+import botConfig from '../config.js';
 const messageStore = new Map();
 const CONFIG_PATH = dataFile('antidelete.json');
 const TEMP_MEDIA_DIR = path.join(process.cwd(), 'temp');
@@ -218,7 +219,7 @@ export async function handleMessageRevocation(sock, revocationMessage) {
         const senderName = sender.split('@')[0];
         const groupName = original.group ? (await sock.groupMetadata(original.group)).subject : '';
         const time = new Date().toLocaleString('en-US', {
-            timeZone: process.env.TIMEZONE || 'Asia/Karachi',
+            timeZone: botConfig.timeZone || 'Africa/Conakry',
             hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit',
             day: '2-digit', month: '2-digit', year: 'numeric'
         });

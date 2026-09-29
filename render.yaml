@@ -1,19 +1,27 @@
 services:
   - type: web
-    name: mega-md
+    name: slow-xv
     runtime: docker
-    dockerfilePath: lib/Dockerfile
+    dockerfilePath: Dockerfile
     envVars:
-      - key: SESSION_ID
-        value: ""
+      - key: PORT
+        value: "5000"
       - key: OWNER_NUMBER
-        value: "923000000000"
+        value: "224669288332"
+      - key: DEVELOPER_NAME
+        value: "VArnox Tech"
+      - key: SESSIONS_DIR
+        value: "sessions"
+      - key: NEWSLETTER_JID
+        value: "120363424782348922@newsletter"
+      - key: CHANNEL_INVITE_CODE
+        value: "0029Vb7jG2KEawdwHsZiEm1E"
       - key: BOT_NAME
-        value: "MEGA-MD"
+        value: "SLOW-XV"
       - key: COMMAND_MODE
         value: "public"
       - key: TIMEZONE
-        value: "Asia/Karachi"
+        value: "Africa/Conakry"
       - key: MONGO_URL
         value: ""
       - key: POSTGRES_URL

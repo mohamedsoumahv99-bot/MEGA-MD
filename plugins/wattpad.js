@@ -1,5 +1,4 @@
-import pkg from 'api-qasim';
-const QasimAny = pkg;
+import { qasimApi as QasimAny } from '../lib/qasimApi.js';
 import { channelInfo } from '../lib/messageConfig.js';
 export default {
     command: 'wattpad',

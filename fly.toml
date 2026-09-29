@@ -1,20 +1,19 @@
-app = "mega-md"
+app = "slow-xv"
 primary_region = "iad"
 
 [build]
-  dockerfile = "lib/Dockerfile"
+  dockerfile = "Dockerfile"
 
 [env]
   PORT = "5000"
-  BOT_NAME = "MEGA-MD"
+  BOT_NAME = "SLOW-XV"
   COMMAND_MODE = "public"
-  TIMEZONE = "Asia/Karachi"
-  SESSION_ID = ""
-  OWNER_NUMBER = "923000000000"
-  MONGO_URL = ""
-  POSTGRES_URL = ""
-  MYSQL_URL = ""
-  DB_URL = ""
+  TIMEZONE = "Africa/Conakry"
+  DEVELOPER_NAME = "VArnox Tech"
+  OWNER_NUMBER = "224669288332"
+  SESSIONS_DIR = "sessions"
+  NEWSLETTER_JID = "120363424782348922@newsletter"
+  CHANNEL_INVITE_CODE = "0029Vb7jG2KEawdwHsZiEm1E"
 
 [http_service]
   internal_port = 5000

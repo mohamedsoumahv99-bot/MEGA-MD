@@ -1,5 +1,4 @@
-import pkg from 'api-qasim';
-const QasimAny = pkg;
+import { qasimApi as QasimAny } from '../lib/qasimApi.js';
 export default {
     command: 'trends',
     aliases: ['trend', 'trending'],

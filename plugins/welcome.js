@@ -1,5 +1,6 @@
 import { handleWelcome } from '../lib/welcome.js';
 import { isWelcomeOn, getWelcome } from '../lib/index.js';
+import config from '../config.js';
 export default {
     command: 'welcome',
     aliases: ['setwelcome'],
@@ -27,8 +28,8 @@ async function handleJoinEvent(sock, id, participants) {
             forwardingScore: 1,
             isForwarded: true,
             forwardedNewsletterMessageInfo: {
-                newsletterJid: '120363319098372999@newsletter',
-                newsletterName: 'MEGA MD',
+            newsletterJid: config.newsletterJid,
+            newsletterName: config.botName,
                 serverMessageId: -1
             }
         }

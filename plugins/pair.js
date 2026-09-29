@@ -1,4 +1,5 @@
 import axios from 'axios';
+import config from '../config.js';
 export default {
     command: 'pair',
     aliases: ['paircode', 'session', 'getsession', 'sessionid'],
@@ -11,8 +12,8 @@ export default {
             forwardingScore: 1,
             isForwarded: true,
             forwardedNewsletterMessageInfo: {
-                newsletterJid: '120363319098372999@newsletter',
-                newsletterName: 'MEGA MD',
+                newsletterJid: config.newsletterJid,
+                newsletterName: config.botName,
                 serverMessageId: -1
             }
         };

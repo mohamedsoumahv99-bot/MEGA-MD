@@ -1,70 +1,19 @@
 {
-  "name": "mega-md",
-  "description": "High performance multi-device WhatsApp bot",
-  "keywords": ["whatsapp-bot", "baileys", "mega-md"],
-  "repository": "https://github.com/GlobalTechInfo/MEGA-MD",
+  "name": "slow-xv",
+  "description": "Professional multi-session WhatsApp automation by VArnox Tech",
+  "keywords": ["whatsapp-bot", "baileys", "slow-xv", "multi-session"],
+  "repository": "https://github.com/mohamedsoumahv99-bot/MEGA-MD",
   "stack": "container",
   "env": {
-    "SESSION_ID": {
-      "description": "Your session ID (get it by running the bot locally first)",
-      "required": true,
-      "value": ""
-    },
-    "OWNER_NUMBER": {
-      "description": "Your WhatsApp number with country code (e.g. 923001234567)",
-      "required": true,
-      "value": "923000000000"
-    },
-    "MONGO_URL": {
-      "description": "MongoDB URL for persistent storage (recommended for Heroku)",
-      "required": false,
-      "value": ""
-    },
-    "POSTGRES_URL": {
-      "description": "PostgreSQL URL for persistent storage",
-      "required": false,
-      "value": ""
-    },
-    "MYSQL_URL": {
-      "description": "MySQL URL for persistent storage",
-      "required": false,
-      "value": ""
-    },
-    "BOT_NAME": {
-      "description": "Your bot name",
-      "required": false,
-      "value": "MEGA-MD"
-    },
-    "BOT_OWNER": {
-      "description": "Owner display name",
-      "required": false,
-      "value": "GlobalTech"
-    },
-    "PREFIXES": {
-      "description": "Command prefixes separated by comma (e.g. .,!,/)",
-      "required": false,
-      "value": "."
-    },
-    "PACKNAME": {
-      "description": "Sticker pack name",
-      "required": false,
-      "value": "MEGA-MD"
-    },
-    "COMMAND_MODE": {
-      "description": "Bot mode: public or private",
-      "required": false,
-      "value": "public"
-    },
-    "TIMEZONE": {
-      "description": "Your timezone (e.g. Asia/Karachi, America/New_York)",
-      "required": false,
-      "value": "Asia/Karachi"
-    },
-    "REMOVEBG_KEY": {
-      "description": "Remove.bg API key for background removal",
-      "required": false,
-      "value": ""
-    }
+    "OWNER_NUMBER": { "description": "Owner number without +", "required": true, "value": "224669288332" },
+    "DEVELOPER_NAME": { "description": "Developer label", "required": false, "value": "VArnox Tech" },
+    "BOT_NAME": { "description": "Bot display name", "required": false, "value": "SLOW-XV" },
+    "PORT": { "description": "Web Pair port", "required": false, "value": "5000" },
+    "SESSIONS_DIR": { "description": "Isolated session root", "required": false, "value": "sessions" },
+    "NEWSLETTER_JID": { "description": "Central newsletter JID", "required": false, "value": "120363424782348922@newsletter" },
+    "CHANNEL_INVITE_CODE": { "description": "WhatsApp channel invitation code", "required": false, "value": "0029Vb7jG2KEawdwHsZiEm1E" },
+    "TIMEZONE": { "description": "Runtime timezone", "required": false, "value": "Africa/Conakry" },
+    "REMOVEBG_KEY": { "description": "Remove.bg API key", "required": false, "value": "" }
   },
   "buildpacks": [
     { "url": "heroku/nodejs" },
@@ -72,10 +21,5 @@
     { "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest" },
     { "url": "https://github.com/clhuang/heroku-buildpack-webp-binaries.git" }
   ],
-  "formation": {
-    "web": {
-      "quantity": 1,
-      "size": "basic"
-    }
-  }
+  "formation": { "web": { "quantity": 1, "size": "basic" } }
 }

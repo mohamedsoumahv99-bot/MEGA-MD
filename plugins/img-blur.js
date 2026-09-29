@@ -1,5 +1,6 @@
 import { downloadMediaMessage } from '@whiskeysockets/baileys';
 import sharp from 'sharp';
+import config from '../config.js';
 export default {
     command: 'blur',
     aliases: ['blurimg', 'blurpic'],
@@ -41,8 +42,8 @@ export default {
                     forwardingScore: 1,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363319098372999@newsletter',
-                        newsletterName: 'MEGA MD',
+                        newsletterJid: config.newsletterJid,
+                        newsletterName: config.botName,
                         serverMessageId: -1
                     }
                 }

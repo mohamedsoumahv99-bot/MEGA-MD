@@ -1,6 +1,5 @@
-import pkg from 'api-qasim';
-const QasimAny = pkg;
 import axios from 'axios';
+import { qasimApi as QasimAny } from '../lib/qasimApi.js';
 export default {
     command: 'apkdl',
     aliases: ['apk', 'an1apk', 'appdl', 'app'],

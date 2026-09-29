@@ -6,6 +6,7 @@ dist/
 
 # Session files
 session/
+sessions/
 
 # Runtime data
 temp/

@@ -1,13 +1,16 @@
-FROM quay.io/qasimtech/mega-md:latest
+FROM node:22-bookworm-slim
 
-WORKDIR /root/mega-md
+WORKDIR /app
 
-COPY package.json package-lock.json ./
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ffmpeg imagemagick webp \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN npm install
+COPY package*.json ./
+RUN npm ci --omit=dev
 
 COPY . .
 
 EXPOSE 5000
 
-CMD ["npm", "run", "start:optimized"]
+CMD ["npm", "start"]

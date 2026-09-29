@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { dataFile } from '../lib/paths.js';
 import store from '../lib/lightweight_store.js';
+import config from '../config.js';
 const MONGO_URL = process.env.MONGO_URL;
 const POSTGRES_URL = process.env.POSTGRES_URL;
 const MYSQL_URL = process.env.MYSQL_URL;
@@ -22,8 +23,8 @@ const channelInfo = {
         forwardingScore: 1,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-            newsletterJid: '120363319098372999@newsletter',
-            newsletterName: 'GlobalTechInc',
+            newsletterJid: config.newsletterJid,
+            newsletterName: config.botName,
             serverMessageId: -1
         }
     }

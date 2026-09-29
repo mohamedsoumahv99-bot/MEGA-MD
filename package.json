@@ -1,7 +1,7 @@
 {
-  "name": "mega-md",
-  "version": "6.0.0",
-  "description": "High performance multi-device WhatsApp bot",
+  "name": "slow-xv",
+  "version": "1.0.0",
+  "description": "Professional multi-session WhatsApp automation by VArnox Tech",
   "type": "module",
   "main": "index.js",
   "directories": {
@@ -12,11 +12,12 @@
   },
   "scripts": {
     "start": "node index.js",
+    "start:qr": "node index.js --qr-code",
     "start:optimized": "node --max-old-space-size=512 --optimize-for-size --gc-interval=100 index.js",
     "start:fresh": "node reset-data.js && node index.js",
-    "dev": "nodemon --watch . --ext js --ignore node_modules --ignore data --ignore session --ignore temp index.js",
+    "dev": "nodemon --watch . --ext js --ignore node_modules --ignore data --ignore session --ignore sessions --ignore temp index.js",
     "reset-data": "node reset-data.js",
-    "reset-session": "node -e \"import('fs').then(f=>f.default.rmSync('./session',{recursive:true,force:true})).then(()=>console.log('Session cleared!'))\"",
+    "reset-session": "node -e \"import('fs').then(f=>f.default.rmSync('./sessions',{recursive:true,force:true})).then(()=>console.log('Sessions cleared!'))\"",
     "build": "echo 'No build step needed - plain JS'",
     "lint": "eslint . --ext .js",
     "test": "vitest run",
@@ -26,29 +27,26 @@
     "audit": "npm audit --omit=dev"
   },
   "keywords": [
+    "slow-xv",
     "whatsapp-bot",
     "baileys-bot",
-    "Mega-Md",
-    "Suhail-Md",
-    "multi-device",
-    "nodejs-bot",
-    "javascript-bot"
+    "multi-session",
+    "nodejs-bot"
   ],
-  "homepage": "https://github.com/GlobalTechInfo/MEGA-MD",
+  "homepage": "https://github.com/mohamedsoumahv99-bot/MEGA-MD",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GlobalTechInfo/MEGA-MD.git"
+    "url": "git+https://github.com/mohamedsoumahv99-bot/MEGA-MD.git"
   },
   "bugs": {
-    "url": "https://github.com/GlobalTechInfo/MEGA-MD/issues"
+    "url": "https://github.com/mohamedsoumahv99-bot/MEGA-MD/issues"
   },
   "license": "MIT",
-  "author": "Qasim Ali",
+  "author": "VArnox Tech",
   "dependencies": {
     "@hapi/boom": "^10.0.1",
     "@whiskeysockets/baileys": "^7.0.0-rc14",
     "acrcloud": "^1.4.0",
-    "api-qasim": "^3.2.10",
     "awesome-phonenumber": "^5.9.0",
     "axios": "^1.8.4",
     "better-sqlite3": "^12.5.0",

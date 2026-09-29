@@ -1,10 +1,16 @@
-FROM quay.io/qasimtech/mega-md:latest
+FROM node:22-bookworm-slim
 
-WORKDIR /root/mega-md
+WORKDIR /app
 
-RUN git clone https://github.com/GlobalTechInfo/MEGA-MD . && \
-    npm install
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ffmpeg imagemagick webp \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY package*.json ./
+RUN npm ci --omit=dev
 
 EXPOSE 5000
+
+COPY . .
 
 CMD ["npm", "start"]

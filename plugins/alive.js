@@ -47,8 +47,8 @@ export default {
                     forwardingScore: 999,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363319098372999@newsletter',
-                        newsletterName: 'GlobalTechInc',
+                        newsletterJid: config.newsletterJid,
+                        newsletterName: config.botName,
                         serverMessageId: -1
                     }
                 }

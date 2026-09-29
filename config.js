@@ -25,6 +25,8 @@ const config = {
     sessionId: process.env.SESSION_ID || '',
     pairingNumber: process.env.PAIRING_NUMBER || '',
     sessionsDir: process.env.SESSIONS_DIR || 'sessions',
+    dataDir: process.env.DATA_DIR || 'data',
+    tempDir: process.env.TEMP_DIR || 'temp',
     pairingTimeoutMs: Number(process.env.PAIRING_TIMEOUT_MS) || 10 * 60 * 1000,
     reconnectBaseDelayMs: Number(process.env.RECONNECT_BASE_DELAY_MS) || 2000,
     reconnectMaxDelayMs: Number(process.env.RECONNECT_MAX_DELAY_MS) || 60000,

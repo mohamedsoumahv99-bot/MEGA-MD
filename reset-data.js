@@ -1,6 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-const DATA_DIR = path.join(process.cwd(), 'data');
+import config from './config.js';
+const DATA_DIR = path.isAbsolute(config.dataDir)
+    ? config.dataDir
+    : path.join(process.cwd(), config.dataDir);
 const defaults = {
     'autoStatus.json': { enabled: false },
     'autoread.json': { enabled: false },

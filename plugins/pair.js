@@ -1,5 +1,5 @@
-import axios from 'axios';
 import config from '../config.js';
+import { sessionManager, normalizeNumber } from '../lib/sessionManager.js';
 export default {
     command: 'pair',
     aliases: ['paircode', 'session', 'getsession', 'sessionid'],
@@ -24,8 +24,10 @@ export default {
                 contextInfo: forwardInfo
             }, { quoted: message });
         }
-        const number = query.replace(/[^0-9]/g, '');
-        if (number.length < 10 || number.length > 15) {
+        let number;
+        try {
+            number = normalizeNumber(query);
+        } catch {
             return await sock.sendMessage(chatId, {
                 text: "❌ *Invalid Format*\nPlease provide the number with country code but without + or spaces.",
                 contextInfo: forwardInfo
@@ -36,14 +38,9 @@ export default {
             contextInfo: forwardInfo
         }, { quoted: message });
         try {
-            const response = await axios.get(`https://mega-pairing.onrender.com/pair?number=${number}`, {
-                timeout: 60000
-            });
-            if (response.data && response.data.code) {
-                const pairingCode = response.data.code;
-                if (pairingCode.includes("Unavailable") || pairingCode.includes("Error")) {
-                    throw new Error("Server is busy");
-                }
+            const result = await sessionManager.pair(number);
+            if (result.pairingCode) {
+                const pairingCode = result.pairingCode;
                 const successText = `✅ *MEGA-MD PAIRING CODE*\n\n` +
                     `Code: *${pairingCode}*\n\n` +
                     `*How to use:*\n` +
@@ -56,23 +53,19 @@ export default {
                     text: successText,
                     contextInfo: forwardInfo
                 }, { quoted: message });
-            }
-            else {
-                throw new Error("Invalid response format");
+            } else if (result.connected) {
+                await sock.sendMessage(chatId, {
+                    text: `✅ *Session déjà connectée*\n\nLe numéro ${number} est déjà prêt à utiliser ${config.botName}.`,
+                    contextInfo: forwardInfo
+                }, { quoted: message });
+            } else {
+                throw new Error(result.lastError || 'Pairing indisponible');
             }
         }
         catch (error) {
-            console.error('Pairing Plugin Error:', error.message);
+            console.error(`[${config.botName}] Pairing plugin error:`, error.message);
             let errorMsg = "❌ *Pairing Failed*\nReason: ";
-            if (error.code === 'ECONNABORTED') {
-                errorMsg += "Server timeout. Please try again in 1 minute.";
-            }
-            else if (error.response?.status === 400) {
-                errorMsg += "Invalid phone number format.";
-            }
-            else {
-                errorMsg += "The server is currently offline or busy. Try again later.";
-            }
+            errorMsg += error.message || "The server is currently offline or busy. Try again later.";
             await sock.sendMessage(chatId, {
                 text: errorMsg,
                 contextInfo: forwardInfo
